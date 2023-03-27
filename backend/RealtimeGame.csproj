@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>RealtimeGame</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.96" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="EventbusMiddleware\" />
+    <None Remove="Controllers\" />
+    <None Remove="Payloads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EventbusMiddleware\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Payloads\" />
+  </ItemGroup>
+</Project>
