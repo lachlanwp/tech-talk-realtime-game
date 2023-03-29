@@ -19,7 +19,6 @@ const sendMessage = <T>(Payload: T, Type: any) => {
         JSON.stringify({
           Payload,
           Type,
-          CreatedAt: moment.utc().format(DateFormattingStrings.parseable),
         } as EventBusMessage<T>),
       );
     }
@@ -108,7 +107,6 @@ const initialiseEventBus = () => {
                   id: gameState.ownPlayer?.id,
                 },
                 Type: EventBusMessageTypes.EchoPresence,
-                CreatedAt: moment.utc().format(DateFormattingStrings.parseable),
               }),
             );
           } else {

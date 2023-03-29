@@ -21,10 +21,11 @@ export const AppDraggable: React.FC<IProps> = ({children, player}) => {
       EventBus.sendMessage(
         {
           id: player.id,
-          posX: draggableX,
-          posY:
+          posX: Math.round(draggableX),
+          posY: Math.round(
             draggableY -
-            Platform.select({ios: getStatusBarHeight(), default: 0}),
+              Platform.select({ios: getStatusBarHeight(), default: 0}),
+          ),
         },
         EventBusMessageTypes.UserMovement,
       );
