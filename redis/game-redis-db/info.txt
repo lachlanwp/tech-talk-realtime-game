@@ -1,0 +1,5 @@
+ABOUT
+
+Redis will dump its memory into this folder every 20 seconds.
+Useful if you need to restart the Redis instance and still want 
+to keep some level of persistence of the in memory data

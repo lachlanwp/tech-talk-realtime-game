@@ -22,8 +22,4 @@ RUN apt-get update \
         nano \
      && rm -rf /var/lib/apt/lists/*
 
-ENV REDIS_PASSWORD=helloworld
-ENV REDIS_HOST=host.docker.internal
-ENV REDIS_PORT=6366
-
 ENTRYPOINT ["dotnet", "RealtimeGame.dll"]
