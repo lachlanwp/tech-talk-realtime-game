@@ -21,7 +21,7 @@ Note: in production systems it would be best to read the environment variables f
 ### Inside the /frontend folder
 
 Open `/frontend/Config.ts` and set the `webSocketUrl` variable to where the `backend`
-is hosted. If running the docker container locally, you can leave as `127.0.0.1`.
+is hosted. If running the docker container locally, you can leave as `ws://127.0.0.1:5005`.
 
 ### Inside the /backend folder
 
