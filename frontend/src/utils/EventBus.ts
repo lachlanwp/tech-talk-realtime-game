@@ -1,12 +1,11 @@
-import {EventBusMessageTypes, DateFormattingStrings, Routes} from '@constants';
+import {EventBusMessageTypes, Routes} from '@constants';
 import {EventBusMessage, Player} from '@models';
 import {gameState} from '../../App';
-import moment from 'moment';
 import {difference, get} from 'lodash';
 import * as RootNavigation from './NavigationService';
 import {showToast} from './Toast';
+import {webSocketUrl} from '../../Config';
 
-const wsUri = 'wss://cloud.lachlanpearce.com';
 const echoMillis = 2000;
 //@ts-ignore
 export let socket: WebSocket | undefined;
@@ -31,7 +30,7 @@ const initialiseEventBus = () => {
 
     //@ts-ignore
     // eslint-disable-next-line no-undef
-    socket = new WebSocket(wsUri);
+    socket = new WebSocket(webSocketUrl);
 
     socket.onmessage = (e: any) => {
       var event = JSON.parse(e.data) as EventBusMessage<any>;

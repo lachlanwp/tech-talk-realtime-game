@@ -6,23 +6,18 @@ namespace RealtimeGame.EventbusMiddleware
 	public class BaseEventBusMiddleware
     {
         internal readonly RequestDelegate _next;
-        internal IConfiguration config { get; set; }
         internal GameRedisSessionState redisMemoryCache;
 
         public BaseEventBusMiddleware(RequestDelegate next)
         {
             _next = next;
 
-            var builder = new ConfigurationBuilder()
-                            .SetBasePath(Directory.GetCurrentDirectory())
-                            .AddJsonFile("game-config.json", optional: false, reloadOnChange: false)
-                            .AddEnvironmentVariables();
+            var redisHost = Environment.GetEnvironmentVariable("REDIS_HOST");
+            var redisPort = Environment.GetEnvironmentVariable("REDIS_PORT");
+            var redisPassword = Environment.GetEnvironmentVariable("REDIS_PASSWORD");
 
-            config = builder.Build();
+            File.WriteAllText("config.log", $"Config is: REDIS_HOST={redisHost}, REDIS_PORT={redisPort}");
 
-            var redisHost = config.GetValue<string>("REDIS_HOST");
-            var redisPort = config.GetValue<string>("REDIS_PORT");
-            var redisPassword = config.GetValue<string>("REDIS_PASSWORD");
             redisMemoryCache = new GameRedisSessionState(redisHost, redisPort, redisPassword);
         }
 

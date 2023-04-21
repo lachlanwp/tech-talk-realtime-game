@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
-COPY Realtime-Game/backend/. ./Realtime-Game/backend/
+COPY ./ ./Realtime-Game/backend/
 
 WORKDIR /app/Realtime-Game/backend/
 
@@ -13,12 +13,17 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 
 WORKDIR /app
 COPY --from=build /out ./
-ENV ASPNETCORE_URLS http://*:5000
+
+ENV ASPNETCORE_URLS http://*:5005
 
 # install dependencies
 RUN apt-get update \
     && apt-get install -y --allow-unauthenticated \
         nano \
      && rm -rf /var/lib/apt/lists/*
+
+ENV REDIS_PASSWORD=helloworld
+ENV REDIS_HOST=host.docker.internal
+ENV REDIS_PORT=6366
 
 ENTRYPOINT ["dotnet", "RealtimeGame.dll"]
