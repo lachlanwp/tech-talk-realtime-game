@@ -12,6 +12,10 @@ on iOS & Android as well as in a browser on any device with a modern browser.
 
 You must setup your development environment to run React Native apps before attempting to run/build the front-end on iOS and Android simulators.
 
+## Note
+
+This is not intended to be a production app or system, it is intended for demonstration purposes. The security of the app and system is lax, for quick setup and easy demonstration. In a production system, you would have authentication and authorisation to ensure the messages are coming from an authentic user - as it is, the messages could be spoofed easily.
+
 ## Config and environment variables
 
 ### Inside the /frontend folder (config)
